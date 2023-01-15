@@ -1,5 +1,7 @@
 # Keycloak
 
+[![Docker Repository on Quay](https://quay.io/repository/innovation-hub-bergisches-rheinland/keycloak/status "Docker Repository on Quay")](https://quay.io/repository/innovation-hub-bergisches-rheinland/keycloak)
+
 A custom Keycloak distribution which is configured to use opinionated defaults and necessary extensions.
 It is necessary because the new Keycloak operator using the Quarkus distribution does not bring built-in 
 support for extensions. See: https://github.com/keycloak/keycloak/issues/10835
