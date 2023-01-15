@@ -16,5 +16,3 @@ Either create a new git tag and push it manually:
 git tag MAJOR.MINOR.PATCH
 git push --follow-tags origin main
 ```
-
-Or use the workflow dispatch of the [actions/workflows/tag.yml](https://github.com/innovation-hub-bergisches-rheinland/keycloak/actions/workflows/tag.yml)
