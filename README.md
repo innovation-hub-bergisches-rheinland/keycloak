@@ -17,4 +17,4 @@ git tag MAJOR.MINOR.PATCH
 git push --follow-tags origin main
 ```
 
-Or use the workflow dispatch of the [tag workflow](actions/workflows/tag.yml)
+Or use the workflow dispatch of the [actions/workflows/tag.yml](https://github.com/innovation-hub-bergisches-rheinland/keycloak/actions/workflows/tag.yml)
