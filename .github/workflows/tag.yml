@@ -2,15 +2,10 @@ name: Release a new version
 on:
   workflow_dispatch:
     inputs:
-      version-bump:
-        description: 'Version Bump'     
-        required: true
-        default: 'minor' 
-        type: choice
-        options:
-        - patch
-        - minor
-        - major
+      version:
+        description: 'Version Number (SemVer)'
+        required: true 
+        type: string
 jobs:
   tag:
     runs-on: ubuntu-latest
@@ -22,6 +17,6 @@ jobs:
             github.rest.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: 'refs/tags/v${{ github.event.inputs.version-bump }}',
+              ref: 'refs/tags/v${{ github.event.inputs.version }}',
               sha: context.sha
             })
