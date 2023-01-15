@@ -55,7 +55,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: ${{ startsWith(github.ref, 'refs/tags/v') }}
-          file: ./docker/Dockerfile
+          file: Dockerfile
           context: .
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
