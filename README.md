@@ -13,6 +13,7 @@ Keycloak version is available.
 
 Either create a new git tag and push it manually:
 ```sh
-git tag MAJOR.MINOR.PATCH
-git push --follow-tags origin main
+tag="v<MAJOR>.<MINOR>.<PATCH>"
+git tag "$tag"
+git push origin "$tag"
 ```
