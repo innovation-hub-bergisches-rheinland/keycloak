@@ -1,0 +1,27 @@
+name: Release a new version
+on:
+  workflow_dispatch:
+    inputs:
+      version-bump:
+        description: 'Version Bump'     
+        required: true
+        default: 'minor' 
+        type: choice
+        options:
+        - patch
+        - minor
+        - major
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create tag
+        uses: actions/github-script@v5
+        with:
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'refs/tags/v${{ github.event.inputs.version-bump }}',
+              sha: context.sha
+            })
