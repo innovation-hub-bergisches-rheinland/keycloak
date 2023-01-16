@@ -8,14 +8,14 @@ support for extensions. See: https://github.com/keycloak/keycloak/issues/10835
 
 ## Dependabot
 
-The repository is configured using dependabot and it should automatically open PRs when a new upstream 
-Keycloak version is available.
+The repository is configured using dependabot and it should automatically open PRs when a new upstream version is available.
+Whenever an update for Keycoak is available it will be automatically merged and a new reelase will be created.
 
 ## Releasing
 
-Either create a new git tag and push it manually:
+Create a new git tag and push it manually:
 ```sh
-tag="v<MAJOR>.<MINOR>.<PATCH>"
+tag="v<MAJOR>.<MINOR>.<PATCH>[-<PRERELEASE>]"
 git tag "$tag"
 git push origin "$tag"
 ```
