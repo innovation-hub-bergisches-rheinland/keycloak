@@ -12,6 +12,10 @@ RUN wget https://github.com/Archi-Lab/archilab-keycloak/raw/master/context/theme
 
 FROM quay.io/keycloak/keycloak:20.0.3 as builder
 
+# Quarkus distribution removed the /auth context path. To preserve compatibility with existing 
+# services we reintroduce it.
+ENV KC_HTTP_RELATIVE_PATH=/auth
+
 ENV KC_HEALTH_ENABLED=true
 ENV KC_METRICS_ENABLED=true
 ENV KC_DB=postgres
