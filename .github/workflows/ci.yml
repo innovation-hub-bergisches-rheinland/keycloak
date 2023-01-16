@@ -64,6 +64,8 @@ jobs:
           push: ${{ github.event_name == 'push' }}
           file: Dockerfile
           context: .
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
