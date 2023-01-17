@@ -8,7 +8,6 @@ FROM alpine:latest as extensions
 
 RUN mkdir /src
 RUN wget https://github.com/aznamier/keycloak-event-listener-rabbitmq/releases/download/3.0.2/keycloak-to-rabbit-3.0.2.jar -O /src/keycloak-to-rabbit.jar
-RUN wget https://github.com/Archi-Lab/archilab-keycloak/raw/master/context/themes/target/prox-keycloak-themes.jar -O /src/prox-keycloak-themes.jar
 
 FROM quay.io/keycloak/keycloak:20.0.3 as builder
 
