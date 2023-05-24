@@ -87,7 +87,7 @@ jobs:
 
       - name: Dependabot metadata
         id: dependabot-metadata
-        uses: dependabot/fetch-metadata@v1.5.0
+        uses: dependabot/fetch-metadata@v1.5.1
 
       - name: Auto merge patch and minor updates
         run: gh pr merge --auto --merge "$PR_URL"
