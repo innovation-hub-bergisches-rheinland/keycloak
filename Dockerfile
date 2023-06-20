@@ -1,8 +1,8 @@
-FROM maven:3-alpine AS theme
+FROM maven:3-eclipse-temurin-17-alpine AS theme
 RUN mkdir /src
 COPY themes /src
 WORKDIR /src
-RUN mvn clean package 
+RUN mvn clean package
 
 FROM alpine:latest AS extensions
 
@@ -11,7 +11,7 @@ RUN wget https://github.com/aznamier/keycloak-event-listener-rabbitmq/releases/d
 
 FROM quay.io/keycloak/keycloak:21.1.1 AS builder
 
-# Quarkus distribution removed the /auth context path. To preserve compatibility with existing 
+# Quarkus distribution removed the /auth context path. To preserve compatibility with existing
 # services we reintroduce it.
 ENV KC_HTTP_RELATIVE_PATH=/auth
 
