@@ -1,0 +1,41 @@
+name: Build
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - edited
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+
+    if: ${{ github.event_name == 'pull_request' && github.event.pull_request.user.login == 'dependabot[bot]' }}
+
+    permissions:
+      pull-requests: write
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Dependabot metadata
+        id: dependabot-metadata
+        uses: dependabot/fetch-metadata@v1.6.0
+
+      - name: Auto merge patch and minor updates
+        run: gh pr merge --auto --merge "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+
+      - name: Release new version
+        if: ${{ steps.dependabot-metadata.outputs.dependency-names == 'keycloak/keycloak' }}
+        env:
+          # Using the default Github Token will not trigger an event so that we build the release.
+          # Therefore we're using a personal access token.
+          # See: https://docs.github.com/en/actions/using-workflows/triggering-a-workflow#triggering-a-workflow-from-a-workflow
+          GITHUB_TOKEN: ${{ secrets.KEYCLOAK_RELEASE_SECRET }} 
+        run: |
+          gh release create v${{ steps.dependabot-metadata.outputs.new-version }} --notes "${{ steps.dependabot-metadata.outputs.new-version }}"
