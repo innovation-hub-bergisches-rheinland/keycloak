@@ -1,4 +1,4 @@
-FROM maven:3-eclipse-temurin-20-alpine AS theme
+FROM maven:3-eclipse-temurin-21-alpine AS theme
 RUN mkdir /src
 COPY themes /src
 WORKDIR /src
