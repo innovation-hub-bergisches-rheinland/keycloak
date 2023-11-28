@@ -36,6 +36,6 @@ jobs:
           # Using the default Github Token will not trigger an event so that we build the release.
           # Therefore we're using a personal access token.
           # See: https://docs.github.com/en/actions/using-workflows/triggering-a-workflow#triggering-a-workflow-from-a-workflow
-          GITHUB_TOKEN: ${{ secrets.KEYCLOAK_RELEASE_SECRET }}
+          GITHUB_TOKEN: ${{ secrets.RELEASE_SECRET }}
         run: |
           gh release create v${{ steps.dependabot-metadata.outputs.new-version }} --notes "${{ steps.dependabot-metadata.outputs.new-version }}"
