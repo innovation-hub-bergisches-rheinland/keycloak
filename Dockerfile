@@ -9,7 +9,7 @@ FROM alpine:latest AS extensions
 RUN mkdir /src
 RUN wget https://github.com/aznamier/keycloak-event-listener-rabbitmq/releases/download/3.0.2/keycloak-to-rabbit-3.0.2.jar -O /src/keycloak-to-rabbit.jar
 
-FROM quay.io/keycloak/keycloak:23.0.0 AS builder
+FROM quay.io/keycloak/keycloak:23.0.6 AS builder
 
 # Quarkus distribution removed the /auth context path. To preserve compatibility with existing
 # services we reintroduce it.
@@ -23,7 +23,7 @@ COPY --from=extensions /src /opt/keycloak/providers
 COPY --from=theme /src/target /opt/keycloak/providers
 RUN /opt/keycloak/bin/kc.sh build
 
-FROM quay.io/keycloak/keycloak:23.0.0
+FROM quay.io/keycloak/keycloak:23.0.6
 COPY --from=builder /opt/keycloak/lib/quarkus/ /opt/keycloak/lib/quarkus/
 COPY --from=extensions /src /opt/keycloak/providers
 COPY --from=theme /src/target /opt/keycloak/providers
